@@ -1,0 +1,171 @@
+/**
+ * @file
+ * 应用主题配置和全局样式
+ * 包含 shadcn/ui 主题变量、Tailwind CSS 配置和自定义样式
+ * 增补变量，查看这个说明：
+ * https://ui.shadcn.com/docs/theming
+ */
+
+@import 'tailwindcss';
+
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+@config '../tailwind.config.mjs';
+
+/* 自定义全局样式 */
+/* 如需要可以在这里添加项目特定的样式 */
+
+:root {
+	/* 基础设置 */
+	--radius: 0.65rem; /* 圆角半径 */
+
+	/* 页面基础颜色 */
+	--background: oklch(1 0 0); /* 页面背景色 - 纯白 */
+	--foreground: oklch(0.141 0.005 285.823); /* 主要文字颜色 - 深蓝灰 */
+
+	/* 卡片颜色 */
+	--card: oklch(1 0 0); /* 卡片背景色 - 纯白 */
+	--card-foreground: oklch(0.141 0.005 285.823); /* 卡片文字颜色 - 深蓝灰 */
+
+	/* 弹出层颜色 */
+	--popover: oklch(1 0 0); /* 弹出层背景色 - 纯白 */
+	--popover-foreground: oklch(0.141 0.005 285.823); /* 弹出层文字颜色 - 深蓝灰 */
+
+	/* 主色调 */
+	--primary: oklch(0.606 0.25 292.717); /* 主色调 - 紫色 */
+	--primary-foreground: oklch(0.969 0.016 293.756); /* 主色调文字 - 淡紫 */
+
+	/* 次要色调 */
+	--secondary: oklch(0.967 0.001 286.375); /* 次要色调 - 极浅灰 */
+	--secondary-foreground: oklch(0.21 0.006 285.885); /* 次要色调文字 - 深蓝灰 */
+
+	/* 静音色调 */
+	--muted: oklch(0.967 0.001 286.375); /* 静音色调 - 极浅灰 */
+	--muted-foreground: oklch(0.552 0.016 285.938); /* 静音色调文字 - 中灰 */
+
+	/* 强调色 */
+	--accent: oklch(0.967 0.001 286.375); /* 强调色 - 极浅灰 */
+	--accent-foreground: oklch(0.21 0.006 285.885); /* 强调色文字 - 深蓝灰 */
+
+	/* 危险色 */
+	--destructive: oklch(0.577 0.245 27.325); /* 危险/删除按钮 - 红色 */
+
+	/* 边框和输入框 */
+	--border: oklch(0.92 0.004 286.32); /* 边框颜色 - 浅灰 */
+	--input: oklch(0.92 0.004 286.32); /* 输入框背景 - 浅灰 */
+	--ring: oklch(0.606 0.25 292.717); /* 聚焦环颜色 - 紫色 */
+
+	/* 图表颜色 */
+	--chart-1: oklch(0.646 0.222 41.116); /* 图表色彩1 - 橙黄色 */
+	--chart-2: oklch(0.6 0.118 184.704); /* 图表色彩2 - 青蓝色 */
+	--chart-3: oklch(0.398 0.07 227.392); /* 图表色彩3 - 深蓝色 */
+	--chart-4: oklch(0.828 0.189 84.429); /* 图表色彩4 - 绿色 */
+	--chart-5: oklch(0.769 0.188 70.08); /* 图表色彩5 - 黄绿色 */
+
+	/* 侧边栏颜色 */
+	--sidebar: oklch(0.985 0 0); /* 侧边栏背景 - 极浅灰 */
+	--sidebar-foreground: oklch(0.141 0.005 285.823); /* 侧边栏文字 - 深蓝灰 */
+	--sidebar-primary: oklch(0.606 0.25 292.717); /* 侧边栏主色调 - 紫色 */
+	--sidebar-primary-foreground: oklch(0.969 0.016 293.756); /* 侧边栏主色调文字 - 淡紫 */
+	--sidebar-accent: oklch(0.967 0.001 286.375); /* 侧边栏强调色 - 极浅灰 */
+	--sidebar-accent-foreground: oklch(0.21 0.006 285.885); /* 侧边栏强调色文字 - 深蓝灰 */
+	--sidebar-border: oklch(0.92 0.004 286.32); /* 侧边栏边框 - 浅灰 */
+	--sidebar-ring: oklch(0.606 0.25 292.717); /* 侧边栏聚焦环 - 紫色 */
+
+	/* 下放可以自定义拓展，不要忘了 dark 里，也需要一份对应 dark 模式 ↓↓↓ */
+
+	--green: oklch(0.646 0.132 142.495); /* 绿色 */
+	--card-bg-light: #2a3441;
+	--yellow-light: #fef3c7;
+	--yellow: #f59e0b;
+}
+
+@theme inline {
+	/* 圆角尺寸变体 - 基于 --radius 计算 */
+	--radius-sm: calc(var(--radius) - 4px);
+	--radius-md: calc(var(--radius) - 2px);
+	--radius-lg: var(--radius);
+	--radius-xl: calc(var(--radius) + 4px);
+
+	/* Tailwind 颜色映射到 shadcn/ui 主题变量 */
+	--color-background: var(--background);
+	--color-foreground: var(--foreground);
+	--color-card: var(--card);
+	--color-card-foreground: var(--card-foreground);
+	--color-popover: var(--popover);
+	--color-popover-foreground: var(--popover-foreground);
+	--color-primary: var(--primary);
+	--color-primary-foreground: var(--primary-foreground);
+	--color-secondary: var(--secondary);
+	--color-secondary-foreground: var(--secondary-foreground);
+	--color-muted: var(--muted);
+	--color-muted-foreground: var(--muted-foreground);
+	--color-accent: var(--accent);
+	--color-accent-foreground: var(--accent-foreground);
+	--color-destructive: var(--destructive);
+	--color-border: var(--border);
+	--color-input: var(--input);
+	--color-ring: var(--ring);
+	--color-chart-1: var(--chart-1);
+	--color-chart-2: var(--chart-2);
+	--color-chart-3: var(--chart-3);
+	--color-chart-4: var(--chart-4);
+	--color-chart-5: var(--chart-5);
+	--color-sidebar: var(--sidebar);
+	--color-sidebar-foreground: var(--sidebar-foreground);
+	--color-sidebar-primary: var(--sidebar-primary);
+	--color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+	--color-sidebar-accent: var(--sidebar-accent);
+	--color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+	--color-sidebar-border: var(--sidebar-border);
+	--color-sidebar-ring: var(--sidebar-ring);
+}
+
+.dark {
+	--background: oklch(0.141 0.005 285.823);
+	--foreground: oklch(0.985 0 0);
+	--card: oklch(0.21 0.006 285.885);
+	--card-foreground: oklch(0.985 0 0);
+	--popover: oklch(0.21 0.006 285.885);
+	--popover-foreground: oklch(0.985 0 0);
+	--primary: oklch(0.541 0.281 293.009);
+	--primary-foreground: oklch(0.969 0.016 293.756);
+	--secondary: oklch(0.274 0.006 286.033);
+	--secondary-foreground: oklch(0.985 0 0);
+	--muted: oklch(0.274 0.006 286.033);
+	--muted-foreground: oklch(0.705 0.015 286.067);
+	--accent: oklch(0.274 0.006 286.033);
+	--accent-foreground: oklch(0.985 0 0);
+	--destructive: oklch(0.704 0.191 22.216);
+	--border: oklch(1 0 0 / 10%);
+	--input: oklch(1 0 0 / 15%);
+	--ring: oklch(0.541 0.281 293.009);
+	--chart-1: oklch(0.488 0.243 264.376);
+	--chart-2: oklch(0.696 0.17 162.48);
+	--chart-3: oklch(0.769 0.188 70.08);
+	--chart-4: oklch(0.627 0.265 303.9);
+	--chart-5: oklch(0.645 0.246 16.439);
+	--sidebar: oklch(0.21 0.006 285.885);
+	--sidebar-foreground: oklch(0.985 0 0);
+	--sidebar-primary: oklch(0.541 0.281 293.009);
+	--sidebar-primary-foreground: oklch(0.969 0.016 293.756);
+	--sidebar-accent: oklch(0.274 0.006 286.033);
+	--sidebar-accent-foreground: oklch(0.985 0 0);
+	--sidebar-border: oklch(1 0 0 / 10%);
+	--sidebar-ring: oklch(0.541 0.281 293.009);
+
+	/* 自定义颜色 - 暗色模式 */
+	--green: oklch(0.646 0.132 142.495); /* 绿色 */
+	--card-bg-light: #2a3441;
+	--yellow-light: #fef3c7;
+	--yellow: #f59e0b;
+}
+@layer base {
+	* {
+		@apply border-border outline-ring/50;
+	}
+	body {
+		@apply bg-background text-foreground;
+	}
+}

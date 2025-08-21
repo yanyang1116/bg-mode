@@ -1,0 +1,41 @@
+# EditorConfig is awesome: https://editorconfig.org
+
+# 顶层配置文件，不再向上查找
+root = true
+
+# 所有文件的基本设置
+[*]
+# 使用LF行尾
+end_of_line = lf
+# 在文件末尾插入一个新行
+insert_final_newline = true
+# 使用制表符缩进
+indent_style = tab
+# 制表符宽度为4
+indent_size = 4
+tab_width = 4
+# 默认字符集
+charset = utf-8
+# 删除行尾空白字符
+trim_trailing_whitespace = true
+
+# 针对Markdown文件的特殊设置
+[*.md]
+# Markdown中行尾空格有特殊含义，不要自动删除
+trim_trailing_whitespace = false
+
+# 针对JSON文件的特殊设置
+[*.{json,json5,jsonc}]
+# 保持与prettier-plugin-packagejson一致
+
+# 针对YAML文件的特殊设置
+[*.{yml,yaml}]
+# YAML通常使用空格
+indent_style = space
+indent_size = 2
+
+# 针对package.json文件的特殊设置
+[package.json]
+# 保持与prettier-plugin-packagejson一致
+indent_style = space
+indent_size = 2

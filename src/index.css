@@ -1,0 +1,70 @@
+@import 'tailwindcss';
+@config '../tailwind.config.mjs';
+
+body {
+	@apply font-app-font;
+	/* 移动端优化 */
+	-webkit-touch-callout: none; /* 禁止长按菜单 */
+	-webkit-tap-highlight-color: transparent; /* 移除点击高亮 */
+}
+
+/* 允许输入框和文本区域可以选中 */
+input,
+textarea,
+[contenteditable] {
+	-webkit-user-select: auto;
+	-moz-user-select: auto;
+	-ms-user-select: auto;
+	user-select: auto;
+}
+
+/* Mac 风格滚动条样式 */
+::-webkit-scrollbar {
+	width: 8px;
+	height: 8px;
+}
+
+::-webkit-scrollbar-track {
+	background: transparent;
+	border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+	background: rgba(255, 255, 255, 0.3);
+	border-radius: 4px;
+	border: 1px solid transparent;
+	background-clip: padding-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: rgba(255, 255, 255, 0.5);
+	background-clip: padding-box;
+}
+
+::-webkit-scrollbar-thumb:active {
+	background: rgba(255, 255, 255, 0.6);
+	background-clip: padding-box;
+}
+
+/* 暗色模式下的滚动条 */
+.dark ::-webkit-scrollbar-thumb {
+	background: rgba(0, 0, 0, 0.4);
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+	background: rgba(0, 0, 0, 0.6);
+}
+
+.dark ::-webkit-scrollbar-thumb:active {
+	background: rgba(0, 0, 0, 0.7);
+}
+
+/* Firefox 滚动条样式 */
+* {
+	scrollbar-width: thin;
+	scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+}
+
+.dark * {
+	scrollbar-color: rgba(0, 0, 0, 0.4) transparent;
+}

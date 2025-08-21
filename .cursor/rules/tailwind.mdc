@@ -1,0 +1,98 @@
+---
+alwaysApply: true
+---
+
+# Tailwind CSS Rules
+
+## Avoid `!important` unless absolutely necessary
+
+## Custom Utility Classes
+
+Use custom utilities over verbose combinations:
+
+- `position-full` → full positioning
+- `flex-center` → flex + center alignment
+- `grid-center` → grid + center alignment
+- `z-mask` → mask layer z-index
+- `z-overlay-content` → overlay content z-index
+
+```jsx
+// ✅ Custom
+<div className="absolute position-full">
+<div className="flex-center">
+<div className="z-mask">
+
+// ❌ Verbose
+<div className="absolute inset-0">
+<div className="flex items-center justify-center">
+<div className="z-50">
+```
+
+## Theme Color Rules
+
+### Strictly Prohibited: Direct Color Values
+- NEVER use hex color values (e.g., `#ffffff`)
+- NEVER use `rgb()` or `rgba()` functions
+- NEVER use Tailwind default color classes (e.g., `text-red-500`, `bg-blue-200`) - the project has completely overridden Tailwind's theme colors configuration, making these default color classes non-existent or non-compliant with design standards
+
+### Only Use Custom Tailwind Color Class Names
+
+```jsx
+// ✅ Correct Usage
+<div className="bg-background text-foreground">
+<button className="bg-primary text-primary-foreground">
+<div className="border border-border text-muted-foreground">
+<p className="text-destructive">Error message</p>
+
+// ❌ Prohibited Usage
+<div style={{backgroundColor: '#ffffff'}}>
+<button className="bg-red-500 text-white">
+<div className="border-gray-200 text-slate-600">
+```
+
+### Available Tailwind Color Classes
+
+**Basic:** `transparent`, `current`, `white`, `black`, `green`, `light`, `--yellow-light`
+
+**Single colors:** `background`, `foreground`, `border`, `input`, `ring`
+
+**With foreground variants:**
+- `primary` / `primary-foreground`
+- `secondary` / `secondary-foreground`
+- `card` / `card-foreground`
+- `popover` / `popover-foreground`
+- `muted` / `muted-foreground`
+- `accent` / `accent-foreground`
+- `destructive` / `destructive-foreground`
+
+Usage: `bg-primary`, `text-foreground`, `border-border`, etc.
+
+### Available CSS Variables
+For variables not defined in Tailwind, use `className="text-[var(--variable-name)]"` syntax:
+
+**Basic:** `--radius`
+
+**Page:** `--background`, `--foreground`
+
+**Card:** `--card`, `--card-foreground`
+
+**Popover:** `--popover`, `--popover-foreground`
+
+**Primary:** `--primary`, `--primary-foreground`
+
+**Secondary:** `--secondary`, `--secondary-foreground`
+
+**Muted:** `--muted`, `--muted-foreground`
+
+**Accent:** `--accent`, `--accent-foreground`
+
+**Destructive:** `--destructive`, `--destructive-foreground`
+
+**Border & Input:** `--border`, `--input`, `--ring`
+
+**Chart:** `--chart-1`, `--chart-2`, `--chart-3`, `--chart-4`, `--chart-5`
+
+**Sidebar:** `--sidebar`, `--sidebar-foreground`, `--sidebar-primary`, `--sidebar-primary-foreground`, `--sidebar-accent`, `--sidebar-accent-foreground`, `--sidebar-border`, `--sidebar-ring`
+
+**Custom:** `--card-bg-light`, `--green`, `--yellow`, `--yellow-light`
+

@@ -1,0 +1,26 @@
+<task_context>
+当前给你的这个 tradeMain.tsx 文件，是正在调试 tradingView 的一个页面。我注释掉的部分，你可以解开注释，当前是可以运行成功的。
+但是，当前的 tradingView 代码及配置，是运行再 PC 上的，不适合移动端。你需要把它改成适合运行在移动端的版本。
+</task_context>
+
+<rules>
+编码规则，我已经通过 cursor 自带的 *.mdc。格式的文件发送给你了，你可以做为参考。
+</rules>
+
+<task_details>
+- 需要改成移动端，可以手势拖动的版本。
+- 需要补充 mock 数据，运行起来的时候，需要看起来是完整的。
+- 需要模拟一个成本价的虚线。
+- 你需要特别注意，这个版本用的是 charting-library，而不是 tradingview 的 light-chart 版本。
+- 如无必要，不要去改其他文件，尽量再当前文件夹里，完成所有逻辑。
+- 所有的修改，作为一次 git 提交，可以让我及时的 revert。
+</task_details>
+
+<output_style>
+直接修改相关文件，无需同我确认。
+</output_style>
+
+<prepare>
+Think about your answer first before you respond.
+Thinking step by step / take a deep breath
+</prepare>

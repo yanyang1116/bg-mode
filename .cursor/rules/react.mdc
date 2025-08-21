@@ -1,0 +1,48 @@
+---
+alwaysApply: true
+---
+
+# React Rules
+
+## State Management
+
+### Use `useImmer` for complex state
+
+Prefer `useImmer` over `useState` for objects/arrays:
+
+```javascript
+// ✅ useImmer - direct mutation
+import { useImmer } from 'use-immer';
+const [state, updateState] = useImmer({ user: { name: '' } });
+updateState(draft => { draft.user.name = 'John'; });
+
+// ❌ useState - verbose spread syntax
+const [state, setState] = useState({ user: { name: '' } });
+setState(prev => ({ ...prev, user: { ...prev.user, name: 'John' } }));
+```
+
+## Performance Hooks
+
+### Avoid `useMemo` and `useCallback` unless necessary
+
+- Don't use `useMemo` or `useCallback` without good reason
+- If needed, ask for confirmation or provide clear justification
+
+## Hook Utilities
+
+### Use ahooks over custom implementations
+
+```javascript
+// ✅ ahooks
+import { useRequest, useLocalStorageState, useDebounce } from 'ahooks';
+const { data, loading } = useRequest(fetchData);
+const [token, setToken] = useLocalStorageState('auth');
+const debounced = useDebounce(search, { wait: 300 });
+
+// ❌ custom implementations
+const [data, setData] = useState();
+const [loading, setLoading] = useState(false);
+```
+
+Common hooks: `useRequest`, `useLocalStorageState`, `useSessionStorageState`, `useDebounce`, `useThrottle`, `useInterval`, `useTimeout`, `usePrevious`, `useToggle`, `useBoolean`, `useCounter`. Check [ahooks docs](https://ahooks.js.org/) for more.
+

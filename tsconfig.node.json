@@ -1,0 +1,14 @@
+/**
+ * @file
+ * node 环境配置，这个是 vite 默认配置，不需要关心
+ */
+{
+	"compilerOptions": {
+		"composite": true,
+		"skipLibCheck": true,
+		"module": "ESNext",
+		"moduleResolution": "bundler",
+		"allowSyntheticDefaultImports": true
+	},
+	"include": [""]
+}

@@ -1,0 +1,165 @@
+---
+alwaysApply: true
+---
+
+# Development Rules
+
+## Internationalization
+
+### All user-facing text must be in English
+```jsx
+// ✅ English UI text
+<button>Create Wallet</button>
+throw new Error('Invalid private key format');
+
+// ❌ Chinese UI text
+<button>创建钱包</button>
+throw new Error('无效的私钥格式');
+```
+
+### Comments should prioritize Chinese
+```jsx
+// ✅ Chinese comments + English UI
+// 生成指定数量的钱包
+const generateWallets = (count: number) => {
+  console.log('钱包生成失败:', error);
+  return <button>Create Wallet</button>;
+};
+```
+
+## File Organization
+
+### Extract business constants and types
+- **Business constants** → `const.tsx` (exclude API paths and Tailwind classes)
+- **TypeScript types** → `types.ts`
+- **Local utilities** → `helper.tsx`
+
+```typescript
+// const.tsx
+export const WALLET_LIMITS = { MIN_COUNT: 1, MAX_COUNT: 50 };
+
+// helper.tsx
+export const generateWallets = (count: number) => {
+  // Logic here
+};
+```
+
+**Structure:**
+```
+components/wallet-modal/
+├── WalletModal.tsx
+├── types.ts
+├── const.tsx
+├── helper.tsx
+└── index.ts
+```
+
+## Calculation
+
+### Use big.js for All Calculations
+Use `big.js` for all precision-related operations, including parsing and conversions:
+
+```javascript
+import Big from 'big.js';
+
+// ✅ Correct - All precision operations use Big.js
+const result = new Big('0.1').plus('0.2');
+const total = new Big('100.50').times('2.5');
+const isEqual = new Big('10.5').eq('10.50'); // true
+const parsed = new Big(userInput); // instead of parseFloat
+const integer = new Big('123.456').round(0); // instead of parseInt
+
+// ❌ Wrong - Native JS causes precision loss
+const result = 0.1 + 0.2; // 0.30000000000000004
+const parsed = parseFloat(userInput); // precision loss
+const integer = parseInt('123.456'); // precision loss
+```
+
+### Common methods:
+- `new Big(value)`, `.plus(n)`, `.minus(n)`, `.times(n)`, `.div(n)`
+- `.eq(n)`, `.gt(n)`, `.lt(n)`, `.gte(n)`, `.lte(n)`
+- `.toString()`, `.toNumber()`, `.round(dp)`, `.abs()`
+
+For more methods, check Big.js type definitions or [documentation](https://mikemcl.github.io/big.js/).
+
+## Number Display
+
+### Use formatNumber for all number display
+```javascript
+import { formatNumber } from '@/utils/format-number';
+
+// ✅ formatNumber utility
+const balance = formatNumber(amount); // Default 'price'
+const percent = formatNumber(0.1234, 'percent'); // 12.34
+const compact = formatNumber(1500000, 'compact'); // 1.5M
+
+// ❌ Native formatting
+const balance = amount.toFixed(4);
+```
+
+**Types:** `'price'` (default), `'percent'`, `'compact'`
+
+## Date Display
+
+### Use formatDate for all date display
+```javascript
+import { formatDate } from '@/utils/format-date';
+
+// ✅ formatDate utility
+const timestamp = formatDate(new Date()); // Default 'MM/DD HH:mm:ss'
+const dateOnly = formatDate(Date.now(), 'YYYY-MM-DD');
+const timeOnly = formatDate('2025-08-11', 'HH:mm:ss');
+
+// ❌ Native formatting
+const timestamp = new Date().toLocaleDateString();
+const formatted = date.getFullYear() + '-' + date.getMonth();
+```
+
+**Common formats:** `'MM/DD HH:mm:ss'` (default), `'YYYY-MM-DD'`, `'YYYY/MM/DD'`, `'HH:mm:ss'`, `'YYYY年MM月DD日'`
+
+## UI Component Usage
+
+### Prefer shadcn/ui components over custom implementations
+
+Always use shadcn/ui components when available to maintain design consistency:
+
+```jsx
+// ✅ Preferred - Use shadcn/ui Button
+import { Button } from '@/components/shadcn-ui/button';
+
+<Button variant="default" size="sm">
+  Click me
+</Button>
+
+// ❌ Avoid - Custom button styling
+<button className="bg-primary text-primary-foreground px-4 py-2 rounded">
+  Click me
+</button>
+```
+
+### Component availability check
+
+If you need a shadcn/ui component:
+
+1. **Check existing components** in `src/components/shadcn-ui/` first
+2. **If component exists** - use it directly
+3. **If component missing** - notify developer and suggest installation using shadcn/ui CLI
+
+
+## Clipboard Operations
+
+### Use project's copyToClipboard utility
+```javascript
+import { copyToClipboard } from '@/utils/copyToClipboard';
+
+// ✅ Project utility
+copyToClipboard(walletAddress);
+copyToClipboard(privateKey, {
+  successMessage: 'Private key copied',
+  showToast: true
+});
+
+// ❌ Direct usage
+import copy from 'copy-to-clipboard';
+const success = copy(text);
+```

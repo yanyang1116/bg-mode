@@ -1,0 +1,26 @@
+/**
+ * @file
+ * 改造了下，目前这个是比较好的实践，主要移除了 "vite/client" 的显示设定
+ * 通过 include 一个 module.d.ts 文件，来让 vite 自动识别 vite/client 的类型
+ * 这样保持了 "types" 的默认行为
+ *
+ * module.d.ts 是显示声明，即使和通配符配置重复，也是合理的设置
+ */
+{
+	"extends": "@nxlibs/typescript-config/react.json",
+	"compilerOptions": {
+		"baseUrl": ".",
+		"paths": {
+			"@/*": ["./src/*"]
+		},
+		// TODO，这个在 @nxlibs/typescript-config 里，可以更新此配置
+		"noImplicitReturns": false
+	},
+	"include": ["module.d.ts", ".*.cjs", ".*.mjs", "**/*.ts", "**/*.tsx"],
+	"exclude": ["node_modules", "public", "dist"],
+	"references": [
+		{
+			"path": "./tsconfig.node.json"
+		}
+	]
+}

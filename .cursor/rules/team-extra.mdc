@@ -1,0 +1,29 @@
+---
+alwaysApply: true
+---
+
+# Additional Team Rules
+
+## ESLint Error Handling
+
+Limit fix attempts to avoid time waste:
+- Try fixing once
+- If still problematic, stop further attempts
+
+## Rule Synchronization
+
+When syncing between cursorrules (.mdc) and claude.md:
+- Direct content transfer only, no analysis/modifications
+- Watch for encoding differences between .mdc and .md formats to avoid corruption
+- Specifically avoid emoji symbols (such as ✅ ❌ etc.) - use text alternatives like "Good:" "Bad:" instead
+- These rules guide Cursor and Claude Code for collaborative coding
+
+## Code Optimization Guidelines
+
+### Tailwind CSS Classes
+
+DO NOT extract Tailwind utility classes to constants as "magic numbers":
+- Classes like `w-12`, `h-8`, `text-sm`, `p-4` should stay inline
+- These are design tokens, not magic numbers
+- Extracting them is over-engineering and reduces readability
+- Keep Tailwind classes where they are used for better maintainability

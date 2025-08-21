@@ -1,0 +1,1 @@
+export { OverviewWalletCard } from './OverviewWalletCard';

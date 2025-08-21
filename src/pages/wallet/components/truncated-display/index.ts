@@ -1,0 +1,1 @@
+export { TruncatedDisplay } from './TruncatedDisplay';

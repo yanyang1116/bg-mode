@@ -1,0 +1,31 @@
+---
+alwaysApply: true
+---
+
+# TypeScript Rules
+
+## Type Imports/Exports
+Use explicit `type` keyword:
+
+```typescript
+// ✅ Correct
+import type { UserAPI } from './types';
+import { type ReactNode, useState } from 'react';
+export type { UserAPI } from './types';
+
+// ❌ Wrong
+import { UserAPI } from './types';
+export { UserAPI } from './types';
+```
+
+## Declaration File Extensions
+For `.d.ts` files, include `.d` extension in imports:
+
+```typescript
+// ✅ Correct
+import type { UserAPI } from './types.d';     // for types.d.ts
+import type { Config } from './config';       // for config.ts
+
+// ❌ Wrong
+import type { UserAPI } from './types';       // missing .d for .d.ts file
+```
